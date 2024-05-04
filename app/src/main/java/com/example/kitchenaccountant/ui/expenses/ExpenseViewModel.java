@@ -1,16 +1,16 @@
-package com.example.kitchenaccountant.ui.gallery;
+package com.example.kitchenaccountant.ui.expenses;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class ExpenseViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public ExpenseViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+        mText.setValue("This is expenses fragment");
     }
 
     public LiveData<String> getText() {
