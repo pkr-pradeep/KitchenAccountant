@@ -11,4 +11,24 @@
     <string name="menu_income">Incomes</string>
     <string name="menu_expense">Expenses</string>
     <string name="menu_settings">Settings</string>
+
+    <!-- Form field hints -->
+    <string name="choose_category_prompt">Choose Income Category</string>
+    <string name="collected_from_hint">Collected From</string>
+    <string name="amount_hint">Amount</string>
+    <string name="received_date_hint">Received Date</string>
+    <string name="remarks_hint">Remarks</string>
+
+    <!-- Button text -->
+    <string name="submit_button_text">Submit</string>
+
+    <!-- Income categories -->
+    <string-array name="income_categories">
+        <item>Monthly payment</item>
+        <item>Sponsorship</item>
+        <item>Daily coupon sales</item>
+        <item>Programs</item>
+        <item>Payment for materials</item>
+    </string-array>
+
 </resources>

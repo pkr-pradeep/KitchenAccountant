@@ -15,13 +15,13 @@
         android:id="@+id/nav_income"
         android:name="com.example.kitchenaccountant.ui.income.IncomeFragment"
         android:label="@string/menu_income"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_incomes" />
 
     <fragment
         android:id="@+id/nav_expenses"
         android:name="com.example.kitchenaccountant.ui.expenses.ExpenseFragment"
         android:label="@string/menu_expense"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_expenses" />
 
     <fragment
         android:id="@+id/nav_settings"

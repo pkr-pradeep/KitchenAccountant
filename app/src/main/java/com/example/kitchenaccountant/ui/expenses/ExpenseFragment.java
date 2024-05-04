@@ -10,18 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.kitchenaccountant.databinding.FragmentSlideshowBinding;
+import com.example.kitchenaccountant.databinding.FragmentExpensesBinding;
 
 public class ExpenseFragment extends Fragment {
 
-    private FragmentSlideshowBinding binding;
+    private FragmentExpensesBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ExpenseViewModel expenseViewModel =
                 new ViewModelProvider(this).get(ExpenseViewModel.class);
 
-        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentExpensesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textSlideshow;
