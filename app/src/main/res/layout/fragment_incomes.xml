@@ -13,28 +13,32 @@
         android:id="@+id/edit_text_collected_from"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/collected_from_hint" />
+        android:hint="@string/collected_from_hint"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/edit_text_amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/amount_hint" />
+        android:hint="@string/amount_hint"
+        android:inputType="numberDecimal" />
 
     <EditText
         android:id="@+id/edit_text_received_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="false"
         android:hint="@string/received_date_hint" />
 
     <EditText
         android:id="@+id/edit_text_remarks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="top"
         android:hint="@string/remarks_hint"
         android:inputType="textMultiLine"
-        android:minLines="4"
-        android:gravity="top" />
+        android:minLines="4" />
 
     <Button
         android:id="@+id/button_submit_income"
