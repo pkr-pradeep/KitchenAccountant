@@ -34,8 +34,12 @@
     <!-- Expense Categories -->
     <string name="choose_expense_category_prompt">Choose Category</string>
     <string-array name="expense_categories">
-        <item>Category 1</item>
-        <item>Category 2</item>
+        <item>Groceries</item>
+        <item>Diary</item>
+        <item>Repairs</item>
+        <item>Vegetables</item>
+        <item>Salary</item>
+        <item>Miscellaneous</item>
         <!-- Add more categories as needed -->
     </string-array>
 
