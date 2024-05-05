@@ -6,14 +6,17 @@ import androidx.lifecycle.ViewModel;
 
 public class ExpenseViewModel extends ViewModel {
 
-    private final MutableLiveData<String> mText;
+    private MutableLiveData<String> formData;
 
     public ExpenseViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is expenses fragment");
+        formData = new MutableLiveData<>();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public void updateFormData(String data) {
+        formData.setValue(data);
+    }
+
+    public LiveData<String> getFormData() {
+        return formData;
     }
 }

@@ -13,14 +13,14 @@
     <string name="menu_settings">Settings</string>
 
     <!-- Form field hints -->
-    <string name="choose_category_prompt">Choose Income Category</string>
+    <string name="choose_income_category_prompt">Choose Income Category</string>
     <string name="collected_from_hint">Collected From</string>
     <string name="amount_hint">Amount</string>
     <string name="received_date_hint">Received Date</string>
     <string name="remarks_hint">Remarks</string>
 
     <!-- Button text -->
-    <string name="submit_button_text">Submit</string>
+    <string name="submit_income_button_text">Submit</string>
 
     <!-- Income categories -->
     <string-array name="income_categories">
@@ -30,5 +30,29 @@
         <item>Programs</item>
         <item>Payment for materials</item>
     </string-array>
+
+    <!-- Expense Categories -->
+    <string name="choose_expense_category_prompt">Choose Category</string>
+    <string-array name="expense_categories">
+        <item>Category 1</item>
+        <item>Category 2</item>
+        <!-- Add more categories as needed -->
+    </string-array>
+
+    <!-- Expense Form Hints -->
+    <string name="description_hint">Description</string>
+    <string name="amount_expense_hint">Amount</string>
+    <string name="expense_date_hint">Expense Date</string>
+    <string name="remittance_name_hint">Remittance Name</string>
+    <string name="remittance_mobile_hint">Remittance Mobile</string>
+    <string name="remittance_address_hint">Remittance Address</string>
+    <string name="choose_pay_via_prompt">Choose Pay Via</string>
+    <string-array name="pay_via_options">
+        <item>Online</item>
+        <item>Cash</item>
+    </string-array>
+
+    <!-- Button Text -->
+    <string name="submit_expense_button_text">Submit</string>
 
 </resources>

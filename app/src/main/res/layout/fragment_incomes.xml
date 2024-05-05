@@ -7,7 +7,7 @@
         android:id="@+id/spinner_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:prompt="@string/choose_category_prompt" />
+        android:prompt="@string/choose_income_category_prompt" />
 
     <EditText
         android:id="@+id/edit_text_collected_from"
@@ -44,6 +44,6 @@
         android:id="@+id/button_submit_income"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/submit_button_text" />
+        android:text="@string/submit_income_button_text" />
 
 </LinearLayout>
