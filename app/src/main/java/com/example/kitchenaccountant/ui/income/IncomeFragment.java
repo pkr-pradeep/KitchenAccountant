@@ -15,6 +15,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.kitchenaccountant.R;
+import com.example.kitchenaccountant.ui.service.R2JsonStorageExample;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Calendar;
 
@@ -33,12 +37,12 @@ public class IncomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_incomes, container, false);
 
-        categorySpinner = root.findViewById(R.id.spinner_category);
+        categorySpinner = root.findViewById(R.id.spinner_income_category);
         collectedFromEditText = root.findViewById(R.id.edit_text_collected_from);
         amountEditText = root.findViewById(R.id.edit_text_amount);
-        remarksEditText = root.findViewById(R.id.edit_text_remarks);
+        remarksEditText = root.findViewById(R.id.edit_income_text_remarks);
         submitButton = root.findViewById(R.id.button_submit_income);
-        receivedDateEditText = root.findViewById(R.id.edit_text_received_date);
+        receivedDateEditText = root.findViewById(R.id.edit_income_text_received_date);
         receivedDateEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,15 +50,6 @@ public class IncomeFragment extends Fragment {
             }
         });
 
-        /*// Populate income category dropdown
-        List<String> categories = new ArrayList<>();
-        categories.add("Category 1");
-        categories.add("Category 2");*/
-
-        // Add more categories as needed
-        /*ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, categories);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        categorySpinner.setAdapter(adapter);*/
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(requireContext(),
                 R.array.income_categories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -62,27 +57,33 @@ public class IncomeFragment extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(IncomeViewModel.class);
 
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Get data from input fields
-                String category = categorySpinner.getSelectedItem().toString();
-                String collectedFrom = collectedFromEditText.getText().toString();
-                String amount = amountEditText.getText().toString();
-                String receivedDate = receivedDateEditText.getText().toString();
-                String remarks = remarksEditText.getText().toString();
+        submitButton.setOnClickListener(view -> {
+            // Get data from input fields
+            String category = categorySpinner.getSelectedItem().toString();
+            String collectedFrom = collectedFromEditText.getText().toString();
+            String amount = amountEditText.getText().toString();
+            String receivedDate = receivedDateEditText.getText().toString();
+            String remarks = remarksEditText.getText().toString();
 
-                // Concatenate all data into a single string or use a custom data class
-                String formData = "Category: " + category + "\n" +
-                        "Collected From: " + collectedFrom + "\n" +
-                        "Amount: " + amount + "\n" +
-                        "Received Date: " + receivedDate + "\n" +
-                        "Remarks: " + remarks;
-
-                // Update ViewModel with form data
-                viewModel.updateFormData(formData);
+            // Create JSON object
+            JSONObject formDataJson = new JSONObject();
+            try {
+                formDataJson.put("category", category);
+                formDataJson.put("collectedFrom", collectedFrom);
+                formDataJson.put("amount", amount);
+                formDataJson.put("receivedDate", receivedDate);
+                formDataJson.put("remarks", remarks);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return; // Return if JSON creation fails
             }
+
+            // Convert JSON object to string
+            String formDataString = formDataJson.toString();
+            R2JsonStorageExample.saveObjectIntoR2UsingCompletableFuture(formDataString);
+            //Store JSON String in CloudFlare R2
         });
+
 
         return root;
     }
@@ -102,4 +103,5 @@ public class IncomeFragment extends Fragment {
 
         datePickerDialog.show();
     }
+
 }
