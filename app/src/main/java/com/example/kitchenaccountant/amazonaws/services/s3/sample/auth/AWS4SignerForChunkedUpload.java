@@ -1,16 +1,15 @@
 package com.example.kitchenaccountant.amazonaws.services.s3.sample.auth;
 
+import com.example.kitchenaccountant.amazonaws.services.s3.sample.util.BinaryUtils;
+
 import java.net.URL;
 import java.util.Date;
 import java.util.Map;
 
-import com.amazonaws.services.s3.sample.auth.AWS4SignerBase;
-import com.amazonaws.services.s3.sample.util.BinaryUtils;
-
 /**
  * Sample AWS4 signer demonstrating how to sign 'chunked' uploads
  */
-public class AWS4SignerForChunkedUpload extends com.amazonaws.services.s3.sample.auth.AWS4SignerBase {
+public class AWS4SignerForChunkedUpload extends AWS4SignerBase {
 
     /**
      * SHA256 substitute marker used in place of x-amz-content-sha256 when
@@ -237,8 +236,8 @@ public class AWS4SignerForChunkedUpload extends com.amazonaws.services.s3.sample
                 dateTimeStamp + "\n" +
                 scope + "\n" +
                 lastComputedSignature + "\n" +
-                BinaryUtils.toHex(com.amazonaws.services.s3.sample.auth.AWS4SignerBase.hash(nonsigExtension)) + "\n" +
-                BinaryUtils.toHex(com.amazonaws.services.s3.sample.auth.AWS4SignerBase.hash(dataToChunk));
+                BinaryUtils.toHex(AWS4SignerBase.hash(nonsigExtension)) + "\n" +
+                BinaryUtils.toHex(AWS4SignerBase.hash(dataToChunk));
         
         // compute the V4 signature for the chunk
         String chunkSignature = BinaryUtils.toHex(AWS4SignerBase.sign(chunkStringToSign, signingKey, "HmacSHA256"));

@@ -1,11 +1,10 @@
 package com.example.kitchenaccountant.amazonaws.services.s3.sample.auth;
 
+import com.example.kitchenaccountant.amazonaws.services.s3.sample.util.BinaryUtils;
+
 import java.net.URL;
 import java.util.Date;
 import java.util.Map;
-
-import com.amazonaws.services.s3.sample.auth.AWS4SignerBase;
-import com.amazonaws.services.s3.sample.util.BinaryUtils;
 
 /**
  * Sample AWS4 signer demonstrating how to sign requests to Amazon S3 using an

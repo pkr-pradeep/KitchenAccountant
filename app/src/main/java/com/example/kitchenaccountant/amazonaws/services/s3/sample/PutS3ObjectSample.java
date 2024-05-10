@@ -1,19 +1,18 @@
 package com.example.kitchenaccountant.amazonaws.services.s3.sample;
 
-import com.amazonaws.services.s3.sample.auth.AWS4SignerBase;
-import com.amazonaws.services.s3.sample.auth.AWS4SignerForAuthorizationHeader;
-import com.amazonaws.services.s3.sample.util.BinaryUtils;
-import com.amazonaws.services.s3.sample.util.HttpUtils;
+import static com.example.kitchenaccountant.utilities.Constants.*;
+
+import com.example.kitchenaccountant.amazonaws.services.s3.sample.auth.AWS4SignerBase;
+import com.example.kitchenaccountant.amazonaws.services.s3.sample.auth.AWS4SignerForAuthorizationHeader;
+import com.example.kitchenaccountant.amazonaws.services.s3.sample.util.BinaryUtils;
+import com.example.kitchenaccountant.amazonaws.services.s3.sample.util.HttpUtils;
+import com.example.kitchenaccountant.utilities.CommonUtilities;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Sample code showing how to PUT objects to Amazon S3 with Signature V4
- * authorization
- */
 public class PutS3ObjectSample {
     
     /**
@@ -26,7 +25,9 @@ public class PutS3ObjectSample {
         
         URL endpointUrl;
         try {
-            endpointUrl = new URL("https://5d01feafecb2aabc05a201911480947e.r2.cloudflarestorage.com/iskcon-kitchen-management/pkr1.json");
+            String fileNamePrefix = CommonUtilities.getDateStamp("MMMM_yyyy", "Asia/Kolkata");
+            endpointUrl = new URL("https://5d01feafecb2aabc05a201911480947e.r2.cloudflarestorage.com" +
+                    FORWARD_SLASH + bucketName+ FORWARD_SLASH + fileNamePrefix + JSON_EXTENSION);
         } catch (MalformedURLException e) {
             throw new RuntimeException("Unable to parse service endpoint: " + e.getMessage());
         }

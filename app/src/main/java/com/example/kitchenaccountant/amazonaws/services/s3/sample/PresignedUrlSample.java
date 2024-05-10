@@ -1,13 +1,12 @@
 package com.example.kitchenaccountant.amazonaws.services.s3.sample;
 
+import com.example.kitchenaccountant.amazonaws.services.s3.sample.auth.AWS4SignerBase;
+import com.example.kitchenaccountant.amazonaws.services.s3.sample.auth.AWS4SignerForQueryParameterAuth;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-
-
-import com.amazonaws.services.s3.sample.auth.AWS4SignerBase;
-import com.amazonaws.services.s3.sample.auth.AWS4SignerForQueryParameterAuth;
 
 /**
  * Sample code showing how to use Presigned Urls with Signature V4 authorization
@@ -50,7 +49,7 @@ public class PresignedUrlSample {
                 endpointUrl, "GET", "s3", regionName);
         String authorizationQueryParameters = signer.computeSignature(headers, 
                                                        queryParams,
-                                                       AWS4SignerBase.UNSIGNED_PAYLOAD, 
+                                                       AWS4SignerBase.UNSIGNED_PAYLOAD,
                                                        awsAccessKey, 
                                                        awsSecretKey);
                 

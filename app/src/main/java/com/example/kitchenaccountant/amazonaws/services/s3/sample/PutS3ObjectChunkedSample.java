@@ -1,5 +1,8 @@
 package com.example.kitchenaccountant.amazonaws.services.s3.sample;
 
+import com.example.kitchenaccountant.amazonaws.services.s3.sample.auth.AWS4SignerForChunkedUpload;
+import com.example.kitchenaccountant.amazonaws.services.s3.sample.util.HttpUtils;
+
 import java.io.ByteArrayInputStream;
 import java.io.DataOutputStream;
 import java.net.HttpURLConnection;
@@ -7,10 +10,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-
-
-import com.amazonaws.services.s3.sample.auth.AWS4SignerForChunkedUpload;
-import com.amazonaws.services.s3.sample.util.HttpUtils;
 
 /**
  * Sample code showing how to PUT objects to Amazon S3 using chunked uploading

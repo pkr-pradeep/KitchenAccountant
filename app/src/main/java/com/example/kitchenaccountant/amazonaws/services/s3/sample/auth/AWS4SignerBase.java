@@ -1,5 +1,8 @@
 package com.example.kitchenaccountant.amazonaws.services.s3.sample.auth;
 
+import com.example.kitchenaccountant.amazonaws.services.s3.sample.util.BinaryUtils;
+import com.example.kitchenaccountant.amazonaws.services.s3.sample.util.HttpUtils;
+
 import java.net.URL;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
@@ -14,9 +17,6 @@ import java.util.TreeMap;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-
-import com.amazonaws.services.s3.sample.util.HttpUtils;
-import com.amazonaws.services.s3.sample.util.BinaryUtils;
 
 
 /**
@@ -47,7 +47,7 @@ public abstract class AWS4SignerBase {
     /**
      * Create a new AWS V4 signer.
      * 
-     * @param endpointUri
+     * @param endpointUrl
      *            The service endpoint, including the path to any resource.
      * @param httpMethod
      *            The HTTP verb for the request, e.g. GET.
@@ -204,7 +204,7 @@ public abstract class AWS4SignerBase {
                         scheme + "-" + algorithm + "\n" +
                         dateTime + "\n" +
                         scope + "\n" +
-                        BinaryUtils.toHex(hash(canonicalRequest));
+                                BinaryUtils.toHex(hash(canonicalRequest));
         return stringToSign;
     }
     
