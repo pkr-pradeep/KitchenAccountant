@@ -1,6 +1,7 @@
 package com.example.kitchenaccountant.amazonaws.services.s3.sample;
 
-import static com.example.kitchenaccountant.utilities.Constants.*;
+import static com.example.kitchenaccountant.utilities.Constants.FORWARD_SLASH;
+import static com.example.kitchenaccountant.utilities.Constants.JSON_EXTENSION;
 
 import com.example.kitchenaccountant.amazonaws.services.s3.sample.auth.AWS4SignerBase;
 import com.example.kitchenaccountant.amazonaws.services.s3.sample.auth.AWS4SignerForAuthorizationHeader;
@@ -22,7 +23,9 @@ public class PutS3ObjectSample {
         System.out.println("************************************************");
         System.out.println("*        Executing sample 'PutS3Object'        *");
         System.out.println("************************************************");
-        
+
+        String getResponse = GetS3ObjectSample.getS3Object(bucketName, regionName, awsAccessKey, awsSecretKey);
+
         URL endpointUrl;
         try {
             String fileNamePrefix = CommonUtilities.getDateStamp("MMMM_yyyy", "Asia/Kolkata");
@@ -50,7 +53,7 @@ public class PutS3ObjectSample {
                 
         // express authorization for this as a header
         headers.put("Authorization", authorization);
-        
+
         // make the call to Amazon S3
         String response = HttpUtils.invokeHttpRequest(endpointUrl, "PUT", headers, objectContent);
         System.out.println("--------- Response content ---------");

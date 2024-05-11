@@ -126,6 +126,7 @@ public abstract class AWS4SignerBase {
                                          String canonicalizedHeaderNames,
                                          String canonicalizedHeaders, 
                                          String bodyHash) {
+
         String canonicalRequest =
                         httpMethod + "\n" +
                         getCanonicalizedResourcePath(endpoint) + "\n" +
