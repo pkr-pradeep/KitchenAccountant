@@ -1,6 +1,7 @@
 package com.example.kitchenaccountant.amazonaws.services.s3.sample;
 
 import static com.example.kitchenaccountant.utilities.Constants.*;
+
 import com.example.kitchenaccountant.amazonaws.services.s3.sample.auth.AWS4SignerBase;
 import com.example.kitchenaccountant.amazonaws.services.s3.sample.auth.AWS4SignerForAuthorizationHeader;
 import com.example.kitchenaccountant.utilities.CommonUtilities;
@@ -36,8 +37,8 @@ public class GetS3ObjectIntoCloudFlare {
         URL endpointUrl;
         try {
             String fileNamePrefix = CommonUtilities.getDateStamp("MMMM_yyyy", "Asia/Kolkata");
-            endpointUrl = new URL(HTTPS_PROTOCOL +CLOUDFLARE_HOST+
-                    FORWARD_SLASH + bucketName+ FORWARD_SLASH + fileNamePrefix + JSON_EXTENSION);
+            endpointUrl = new URL(HTTPS_PROTOCOL + CLOUDFLARE_HOST +
+                    FORWARD_SLASH + bucketName + FORWARD_SLASH + fileNamePrefix + JSON_EXTENSION);
         } catch (MalformedURLException e) {
             throw new RuntimeException("Unable to parse service endpoint: " + e.getMessage());
         }
@@ -52,9 +53,9 @@ public class GetS3ObjectIntoCloudFlare {
                 AWS4SignerBase.EMPTY_BODY_SHA256,
                 awsAccessKey,
                 awsSecretKey);
-        headers.put("Authorization",authorization);
+        headers.put("Authorization", authorization);
         try {
-            return getJsonFromCloudFlare(endpointUrl.toString(),headers);
+            return getJsonFromCloudFlare(endpointUrl.toString(), headers);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -1,6 +1,9 @@
 package com.example.kitchenaccountant.ui.service;
 
-import static com.example.kitchenaccountant.utilities.Constants.*;
+import static com.example.kitchenaccountant.utilities.Constants.AWS_ACCESS_KEY_ID;
+import static com.example.kitchenaccountant.utilities.Constants.AWS_REGION;
+import static com.example.kitchenaccountant.utilities.Constants.AWS_SECRET_ACCESS_KEY;
+import static com.example.kitchenaccountant.utilities.Constants.ISKCON_KITCHEN_MGT_BUCKET;
 
 import android.os.Build;
 

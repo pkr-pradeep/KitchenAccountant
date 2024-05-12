@@ -25,7 +25,7 @@ public class PutObjectIntoCloudFlare {
         URL endpointUrl;
         try {
             String fileNamePrefix = CommonUtilities.getDateStamp("MMMM_yyyy", "Asia/Kolkata");
-            endpointUrl = new URL(HTTPS_PROTOCOL + CLOUDFLARE_HOST+
+            endpointUrl = new URL(HTTPS_PROTOCOL + CLOUDFLARE_HOST +
                     FORWARD_SLASH + bucketName + FORWARD_SLASH + fileNamePrefix + JSON_EXTENSION);
         } catch (MalformedURLException e) {
             throw new RuntimeException("Unable to parse service endpoint: " + e.getMessage());
