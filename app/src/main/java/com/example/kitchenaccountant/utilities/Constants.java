@@ -10,5 +10,10 @@ public class Constants {
     public static final String FORWARD_SLASH = "/";
     public static final String X_AMZ_CONTENT_SHA_256 = "x-amz-content-sha256";
     public static final String ISKCON_KITCHEN_MGT_BUCKET = "iskcon-kitchen-management";
-    public static final String CLOUDFLARE_HOST = "5d01feafecb2aabc05a201911480947e.r2.cloudflarestorage.com";
+    public static final String CLOUDFLARE_HOST = String.format("%s.r2.cloudflarestorage.com", ACCOUNT_ID);
+    public static final String APPLICATION_X_WWW_FORM_URLENCODED_CHARSET_UTF_8 = "application/x-www-form-urlencoded; charset=utf-8";
+    public static final String CONTENT_TYPE = "Content-Type";
+    public static final String CONTENT_LENGTH = "content-length";
+    public static final String HTTPS_PROTOCOL = "https://";
+    public static final String GET = "GET";
 }

@@ -50,7 +50,6 @@ public class AWS4SignerForAuthorizationHeader extends AWS4SignerBase {
         String dateTimeStamp = dateTimeFormat.format(now);
 
         // update the headers with required 'x-amz-date' and 'host' values
-        if(httpMethod == "GET")
         headers.put("x-amz-date", dateTimeStamp);
         
         String hostHeader = endpointUrl.getHost();
@@ -99,15 +98,10 @@ public class AWS4SignerForAuthorizationHeader extends AWS4SignerBase {
         String signatureAuthorizationHeader =
                 "Signature=" + BinaryUtils.toHex(signature);
         String authorizationHeader = null;
-        if(httpMethod == "GET")
         authorizationHeader = SCHEME + "-" + ALGORITHM + " "
                 + credentialsAuthorizationHeader + ", "
                 + signedHeadersAuthorizationHeader + ", "
                 + signatureAuthorizationHeader;
-        else {
-            headers.put("x-amz-date", dateTimeStamp);
-            return BinaryUtils.toHex(signature);
-        }
         return authorizationHeader;
     }
 }
