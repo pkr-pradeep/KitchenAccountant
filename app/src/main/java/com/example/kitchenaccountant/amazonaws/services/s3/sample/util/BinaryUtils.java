@@ -31,6 +31,18 @@ public class BinaryUtils {
         return sb.toString().toLowerCase(Locale.getDefault());
     }
 
+    public static String toHex2(byte[] data) {
+        StringBuilder sb = new StringBuilder(data.length * 2);
+        for (int i = 0; i < data.length; i++) {
+            String hex = Integer.toHexString(data[i] & 0xff); // Ensure unsigned byte
+            if (hex.length() == 1) {
+                sb.append('0'); // Pad with leading zero if needed
+            }
+            sb.append(hex);
+        }
+        return sb.toString().toLowerCase(Locale.getDefault());
+    }
+
     /**
      * Converts a Hex-encoded data string to the original byte data.
      *

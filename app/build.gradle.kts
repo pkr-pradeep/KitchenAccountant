@@ -33,6 +33,9 @@ android {
 
 dependencies {
     implementation("com.squareup.okhttp3:okhttp:3.2.0")
+    implementation("com.fasterxml.jackson.core:jackson-annotations:2.13.4")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.4")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.4")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)

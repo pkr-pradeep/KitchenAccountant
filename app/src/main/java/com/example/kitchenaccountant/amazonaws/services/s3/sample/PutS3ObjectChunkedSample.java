@@ -1,7 +1,11 @@
 package com.example.kitchenaccountant.amazonaws.services.s3.sample;
 
+import static com.example.kitchenaccountant.utilities.Constants.FORWARD_SLASH;
+import static com.example.kitchenaccountant.utilities.Constants.JSON_EXTENSION;
+
 import com.example.kitchenaccountant.amazonaws.services.s3.sample.auth.AWS4SignerForChunkedUpload;
 import com.example.kitchenaccountant.amazonaws.services.s3.sample.util.HttpUtils;
+import com.example.kitchenaccountant.utilities.CommonUtilities;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataOutputStream;
@@ -17,7 +21,7 @@ import java.util.Map;
  */
 public class PutS3ObjectChunkedSample {
     
-    private static final String contentSeed = 
+    private String contentSeed =
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tortor metus, sagittis eget augue ut,\n"
             + "feugiat vehicula risus. Integer tortor mauris, vehicula nec mollis et, consectetur eget tortor. In ut\n"
             + "elit sagittis, ultrices est ut, iaculis turpis. In hac habitasse platea dictumst. Donec laoreet tellus\n"
@@ -27,7 +31,18 @@ public class PutS3ObjectChunkedSample {
             + "purus, id semper libero ipsum condimentum nulla. Suspendisse vel mi leo. Morbi pellentesque placerat congue.\n"
             + "Nunc sollicitudin nunc diam, nec hendrerit dui commodo sed. Duis dapibus commodo elit, id commodo erat\n"
             + "congue id. Aliquam erat volutpat.\n";
-    
+
+    private static String contentSeedFinal;
+
+    public PutS3ObjectChunkedSample() {
+        contentSeedFinal = contentSeed;
+    }
+
+    public PutS3ObjectChunkedSample(String contentSeed) {
+        this.contentSeed = contentSeed;
+        contentSeedFinal = contentSeed;
+    }
+
     /**
      * Uploads content to an Amazon S3 object in a series of signed 'chunks' using Signature V4 authorization.
      */
@@ -43,11 +58,9 @@ public class PutS3ObjectChunkedSample {
         
         URL endpointUrl;
         try {
-            if (regionName.equals("us-east-1")) {
-                endpointUrl = new URL("https://s3.amazonaws.com/" + bucketName + "/ExampleChunkedObject.txt");
-            } else {
-                endpointUrl = new URL("https://s3-" + regionName + ".amazonaws.com/" + bucketName + "/ExampleChunkedObject.txt");
-            }
+            String fileNamePrefix = CommonUtilities.getDateStamp("MMMM_yyyy", "Asia/Kolkata");
+            endpointUrl = new URL("https://5d01feafecb2aabc05a201911480947e.r2.cloudflarestorage.com" +
+                    FORWARD_SLASH + bucketName+ FORWARD_SLASH + fileNamePrefix + JSON_EXTENSION);
         } catch (MalformedURLException e) {
             throw new RuntimeException("Unable to parse service endpoint: " + e.getMessage());
         }
@@ -138,7 +151,7 @@ public class PutS3ObjectChunkedSample {
     private static String make65KPayload() {
         StringBuilder oneKSeed = new StringBuilder();
         while ( oneKSeed.length() < 1024 ) {
-            oneKSeed.append(contentSeed);
+            oneKSeed.append(contentSeedFinal);
         }
         
         // now scale up to meet/exceed our requirement
