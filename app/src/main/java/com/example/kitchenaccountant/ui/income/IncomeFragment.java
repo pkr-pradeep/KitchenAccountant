@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -82,6 +83,13 @@ public class IncomeFragment extends Fragment {
             String formDataString = formDataJson.toString();
             R2JsonStorageExample.saveObjectIntoR2UsingCompletableFuture(formDataString);
             //Store JSON String in CloudFlare R2
+            Toast.makeText(requireContext(), "Submission successful!", Toast.LENGTH_SHORT).show();
+            // Reset input fields
+            categorySpinner.setSelection(0); // Reset spinner selection to the first item
+            collectedFromEditText.setText(""); // Clear collected from field
+            amountEditText.setText(""); // Clear amount field
+            receivedDateEditText.setText(""); // Clear received date field
+            remarksEditText.setText(""); // Clear remarks field
         });
 
 

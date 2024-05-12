@@ -1,6 +1,11 @@
 package com.example.kitchenaccountant.amazonaws.services.s3.sample;
 
-import static com.example.kitchenaccountant.utilities.Constants.*;
+import static com.example.kitchenaccountant.utilities.Constants.CLOUDFLARE_HOST;
+import static com.example.kitchenaccountant.utilities.Constants.FORWARD_SLASH;
+import static com.example.kitchenaccountant.utilities.Constants.GET;
+import static com.example.kitchenaccountant.utilities.Constants.HTTPS_PROTOCOL;
+import static com.example.kitchenaccountant.utilities.Constants.JSON_EXTENSION;
+import static com.example.kitchenaccountant.utilities.Constants.SERVICE_NAME;
 
 import com.example.kitchenaccountant.amazonaws.services.s3.sample.auth.AWS4SignerBase;
 import com.example.kitchenaccountant.amazonaws.services.s3.sample.auth.AWS4SignerForAuthorizationHeader;
@@ -76,6 +81,9 @@ public class GetS3ObjectIntoCloudFlare {
         System.out.println("--------- Response content ---------");
         System.out.println(responseBodyJson);
         System.out.println("------------------------------------");
+        if(CommonUtilities.isNullOrEmpty(responseBodyJson) || responseBodyJson.contains("NoSuchKey")) {
+            return null;
+        }
         return responseBodyJson;
     }
 }

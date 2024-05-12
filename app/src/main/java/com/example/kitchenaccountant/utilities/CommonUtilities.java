@@ -4,9 +4,6 @@ import com.example.kitchenaccountant.domain.IncomeDomain;
 import com.example.kitchenaccountant.domain.IncomeRoot;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Collections;
@@ -28,20 +25,6 @@ public class CommonUtilities {
         if (obj instanceof Collection) return ((Collection<?>) obj).isEmpty();
         if (obj instanceof Object[]) return ((Object[]) obj).length == 0;
         return false;
-    }
-
-    public static String mergeJson(String existingJson, String newJson) {
-        JSONObject mergedJsonObject;
-        try {
-            JSONObject jsonObject1 = new JSONObject(existingJson);
-            JSONObject jsonObject2 = new JSONObject(newJson);
-            mergedJsonObject = new JSONObject();
-            mergedJsonObject.put("Object1", jsonObject1);
-            mergedJsonObject.put("Object2", jsonObject2);
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
-        return mergedJsonObject.toString();
     }
 
     public static String jsonModifier(String existingJson) {
@@ -66,7 +49,7 @@ public class CommonUtilities {
             ObjectMapper objectMapper = new ObjectMapper();
             if (!isNullOrEmpty(existingJson))
                 incomeRootExisting = objectMapper.readValue(existingJson, IncomeRoot.class);
-            else jsonModifier(newJson);
+            else return jsonModifier(newJson);
             IncomeDomain incomeDomain = objectMapper.readValue(newJson, IncomeDomain.class);
             List<IncomeDomain> incomeDomainList = incomeRootExisting.getIncomeDomains();
             incomeDomainList.addAll(Collections.singletonList(incomeDomain));
