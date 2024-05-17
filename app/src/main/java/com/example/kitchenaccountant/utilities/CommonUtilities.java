@@ -60,4 +60,16 @@ public class CommonUtilities {
         }
         return mergedJson;
     }
+
+    public static List<IncomeDomain> getAllIncomes(String incomeJson) {
+        try {
+            IncomeRoot incomeRootExisting = null;
+            ObjectMapper objectMapper = new ObjectMapper();
+            if (!isNullOrEmpty(incomeJson))
+                incomeRootExisting = objectMapper.readValue(incomeJson, IncomeRoot.class);
+            return incomeRootExisting.getIncomeDomains();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.kitchenaccountant.R;
-import com.example.kitchenaccountant.ui.service.R2JsonStorageExample;
+import com.example.kitchenaccountant.ui.service.CloudFlareR2Operations;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -81,7 +81,7 @@ public class IncomeFragment extends Fragment {
 
             // Convert JSON object to string
             String formDataString = formDataJson.toString();
-            R2JsonStorageExample.saveObjectIntoR2UsingCompletableFuture(formDataString);
+            CloudFlareR2Operations.saveObjectIntoR2UsingCompletableFuture(formDataString);
             //Store JSON String in CloudFlare R2
             Toast.makeText(requireContext(), "Submission successful!", Toast.LENGTH_SHORT).show();
             // Reset input fields

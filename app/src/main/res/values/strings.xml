@@ -11,6 +11,7 @@
     <string name="menu_income">Incomes</string>
     <string name="menu_expense">Expenses</string>
     <string name="menu_settings">Settings</string>
+    <string name="menu_view">View Transactions</string>
 
     <!-- Form field hints -->
     <string name="choose_income_category_prompt">Choose Income Category</string>

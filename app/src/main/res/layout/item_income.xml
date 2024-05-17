@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/text_view_category"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Category"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_collected_from"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Collected From"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_category" />
+
+    <TextView
+        android:id="@+id/text_view_amount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Amount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_collected_from" />
+
+    <TextView
+        android:id="@+id/text_view_received_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Received Date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_amount" />
+
+    <TextView
+        android:id="@+id/text_view_remarks"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Remarks"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_received_date" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
