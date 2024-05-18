@@ -1,76 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- Spinners for month and year -->
-    <Spinner
-        android:id="@+id/spinner_month"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <Spinner
-        android:id="@+id/spinner_year"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinner_month"
-        tools:ignore="MissingConstraints" />
-
-    <!-- Buttons for viewing incomes and expenses -->
+    <!-- First division: Spinners and buttons -->
     <LinearLayout
-        android:id="@+id/button_layout"
+        android:id="@+id/division1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinner_year">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp">
 
-        <Button
-            android:id="@+id/button_view_incomes"
-            android:layout_width="0dp"
+        <!-- Spinners for month and year -->
+        <Spinner
+            android:id="@+id/spinner_month"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="View Incomes"
-            tools:ignore="MissingConstraints" />
+            android:spinnerMode="dropdown"
+            android:layout_marginBottom="8dp"/>
 
-        <Button
-            android:id="@+id/button_view_expenses"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinner_year"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="View Expenses"
-            tools:ignore="MissingConstraints" />
+            android:spinnerMode="dropdown"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Buttons for viewing incomes and expenses -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_view_incomes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="View Incomes"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/button_view_expenses"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="View Expenses"/>
+        </LinearLayout>
 
     </LinearLayout>
 
+    <!-- Second division: ScrollView -->
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/button_layout">
+        app:layout_constraintTop_toBottomOf="@id/division1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp">
 
         <LinearLayout
             android:id="@+id/container_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"></LinearLayout>
+            android:padding="16dp"/>
 
     </ScrollView>
 
