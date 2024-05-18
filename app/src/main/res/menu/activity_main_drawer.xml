@@ -17,13 +17,13 @@
             android:icon="@drawable/withdrawal"
             android:title="@string/menu_expense" />
         <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/baseline_settings_24"
-            android:title="@string/menu_settings" />
-        <item
             android:id="@+id/nav_view"
             android:icon="@drawable/baseline_account_balance_wallet_24"
             android:title="@string/menu_view" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/baseline_settings_24"
+            android:title="@string/menu_settings" />
 
     </group>
 </menu>
