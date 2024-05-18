@@ -25,13 +25,13 @@ public class CloudFlareR2Operations {
         }
     }
 
-    public static String getR2Object() {
+    public static String getR2Object(String fileName) {
         CompletableFuture completableFuture;
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 completableFuture = CompletableFuture.supplyAsync(() -> {
                     try {
-                        return GetS3ObjectIntoCloudFlare.getS3Object("", ISKCON_KITCHEN_MGT_BUCKET, AWS_REGION, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY);
+                        return GetS3ObjectIntoCloudFlare.getS3Object(fileName, ISKCON_KITCHEN_MGT_BUCKET, AWS_REGION, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY);
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }

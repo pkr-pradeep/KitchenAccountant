@@ -33,7 +33,7 @@ public class GetS3ObjectIntoCloudFlare {
      *
      * @return
      */
-    public static String getS3Object(String fileNamePrefix, String bucketName, String regionName, String awsAccessKey, String awsSecretKey) {
+    public static String getS3Object(String fileName, String bucketName, String regionName, String awsAccessKey, String awsSecretKey) {
         System.out.println("*******************************************************");
         System.out.println("*  Executing sample 'GetObjectUsingHostedAddressing'  *");
         System.out.println("*******************************************************");
@@ -42,7 +42,7 @@ public class GetS3ObjectIntoCloudFlare {
         URL endpointUrl;
         try {
             endpointUrl = new URL(HTTPS_PROTOCOL + CLOUDFLARE_HOST +
-                    FORWARD_SLASH + bucketName + FORWARD_SLASH + fileNamePrefix + JSON_EXTENSION);
+                    FORWARD_SLASH + bucketName + FORWARD_SLASH + fileName + JSON_EXTENSION);
         } catch (MalformedURLException e) {
             throw new RuntimeException("Unable to parse service endpoint: " + e.getMessage());
         }

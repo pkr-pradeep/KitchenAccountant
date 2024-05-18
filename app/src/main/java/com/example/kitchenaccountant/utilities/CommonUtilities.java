@@ -98,11 +98,23 @@ public class CommonUtilities {
 
     public static List<IncomeDomain> getAllIncomes(String incomeJson) {
         try {
-            IncomeRoot incomeRootExisting = null;
+            IncomeRoot incomeRootExisting = new IncomeRoot();
             ObjectMapper objectMapper = new ObjectMapper();
             if (!isNullOrEmpty(incomeJson))
                 incomeRootExisting = objectMapper.readValue(incomeJson, IncomeRoot.class);
             return incomeRootExisting.getIncomeDomains();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static List<ExpenseDomain> getAllExpenses(String expenseJson) {
+        try {
+            ExpenseRoot expenseRoot = new ExpenseRoot();
+            ObjectMapper objectMapper = new ObjectMapper();
+            if (!isNullOrEmpty(expenseJson))
+                expenseRoot = objectMapper.readValue(expenseJson, ExpenseRoot.class);
+            return expenseRoot.getExpenseDomains();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
