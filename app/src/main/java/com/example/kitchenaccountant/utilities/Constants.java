@@ -16,4 +16,6 @@ public class Constants {
     public static final String CONTENT_LENGTH = "content-length";
     public static final String HTTPS_PROTOCOL = "https://";
     public static final String GET = "GET";
+    public static final String INCOME = "income_";
+    public static final String EXPENSE = "expense_";
 }

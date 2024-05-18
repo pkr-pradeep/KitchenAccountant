@@ -1,5 +1,7 @@
 package com.example.kitchenaccountant.ui.expenses;
 
+import static com.example.kitchenaccountant.utilities.Constants.EXPENSE;
+
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,12 +11,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.kitchenaccountant.R;
+import com.example.kitchenaccountant.ui.service.CloudFlareR2Operations;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Calendar;
 
@@ -69,18 +76,34 @@ public class ExpenseFragment extends Fragment {
             String remittanceAddress = remittanceAddressEditText.getText().toString();
             String payVia = payViaSpinner.getSelectedItem().toString();
 
-            // Concatenate all data into a single string or use a custom data class
-            String formData = "Category: " + category + "\n" +
-                    "Description: " + description + "\n" +
-                    "Amount: " + amount + "\n" +
-                    "Expense Date: " + expenseDate + "\n" +
-                    "Remittance Name: " + remittanceName + "\n" +
-                    "Remittance Mobile: " + remittanceMobile + "\n" +
-                    "Remittance Address: " + remittanceAddress + "\n" +
-                    "Pay Via: " + payVia;
+            JSONObject formDataJson = new JSONObject();
+            try {
+                formDataJson.put("category", category);
+                formDataJson.put("description", description);
+                formDataJson.put("amount", amount);
+                formDataJson.put("expenseDate", expenseDate);
+                formDataJson.put("remittanceName", remittanceName);
+                formDataJson.put("remittanceMobile", remittanceMobile);
+                formDataJson.put("remittanceAddress", remittanceAddress);
+                formDataJson.put("payVia", payVia);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return; // Return if JSON creation fails
+            }
 
-            // Update ViewModel with form data
-            viewModel.updateFormData(formData);
+            String formDataString = formDataJson.toString();
+            CloudFlareR2Operations.saveObjectIntoR2UsingCompletableFuture(EXPENSE, formDataString);
+            //Store JSON String in CloudFlare R2
+            Toast.makeText(requireContext(), "Submission successful!", Toast.LENGTH_SHORT).show();
+            // Reset input fields
+            categorySpinner.setSelection(0);
+            descriptionEditText.setText("");
+            amountEditText.setText("");
+            expenseDateEditText.setText("");
+            remittanceNameEditText.setText("");
+            remittanceMobileEditText.setText("");
+            remittanceAddressEditText.setText("");
+            payViaSpinner.setSelection(0);
         });
 
         return root;

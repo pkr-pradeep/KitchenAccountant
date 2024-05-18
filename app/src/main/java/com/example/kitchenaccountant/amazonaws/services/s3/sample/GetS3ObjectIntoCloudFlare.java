@@ -33,7 +33,7 @@ public class GetS3ObjectIntoCloudFlare {
      *
      * @return
      */
-    public static String getS3Object(String bucketName, String regionName, String awsAccessKey, String awsSecretKey) {
+    public static String getS3Object(String fileNamePrefix, String bucketName, String regionName, String awsAccessKey, String awsSecretKey) {
         System.out.println("*******************************************************");
         System.out.println("*  Executing sample 'GetObjectUsingHostedAddressing'  *");
         System.out.println("*******************************************************");
@@ -41,7 +41,6 @@ public class GetS3ObjectIntoCloudFlare {
         // the region-specific endpoint to the target object expressed in path style
         URL endpointUrl;
         try {
-            String fileNamePrefix = CommonUtilities.getDateStamp("MMMM_yyyy", "Asia/Kolkata");
             endpointUrl = new URL(HTTPS_PROTOCOL + CLOUDFLARE_HOST +
                     FORWARD_SLASH + bucketName + FORWARD_SLASH + fileNamePrefix + JSON_EXTENSION);
         } catch (MalformedURLException e) {

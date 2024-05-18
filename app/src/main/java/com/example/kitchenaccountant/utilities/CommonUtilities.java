@@ -1,5 +1,7 @@
 package com.example.kitchenaccountant.utilities;
 
+import com.example.kitchenaccountant.domain.ExpenseDomain;
+import com.example.kitchenaccountant.domain.ExpenseRoot;
 import com.example.kitchenaccountant.domain.IncomeDomain;
 import com.example.kitchenaccountant.domain.IncomeRoot;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,7 +29,7 @@ public class CommonUtilities {
         return false;
     }
 
-    public static String jsonModifier(String existingJson) {
+    public static String incomeJsonModifier(String existingJson) {
         String mergedJson;
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -38,23 +40,56 @@ public class CommonUtilities {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        return mergedJson;
+    }
+
+    public static String expenseJsonModifier(String existingJson) {
+        String mergedJson;
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            ExpenseDomain expenseDomain = objectMapper.readValue(existingJson, ExpenseDomain.class);
+            ExpenseRoot expenseRoot = new ExpenseRoot();
+            expenseRoot.setExpenseDomains(Collections.singletonList(expenseDomain));
+            mergedJson = objectMapper.writeValueAsString(expenseRoot);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         return mergedJson;
     }
 
-    public static String mergeJsonIntoAnother(String existingJson, String newJson) {
+    public static String mergeIncomeJsonIntoAnother(String existingJson, String newJson) {
         String mergedJson;
         try {
             IncomeRoot incomeRootExisting = null;
             ObjectMapper objectMapper = new ObjectMapper();
             if (!isNullOrEmpty(existingJson))
                 incomeRootExisting = objectMapper.readValue(existingJson, IncomeRoot.class);
-            else return jsonModifier(newJson);
+            else return incomeJsonModifier(newJson);
             IncomeDomain incomeDomain = objectMapper.readValue(newJson, IncomeDomain.class);
             List<IncomeDomain> incomeDomainList = incomeRootExisting.getIncomeDomains();
             incomeDomainList.addAll(Collections.singletonList(incomeDomain));
             incomeRootExisting.setIncomeDomains(incomeDomainList);
             mergedJson = objectMapper.writeValueAsString(incomeRootExisting);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return mergedJson;
+    }
+
+    public static String mergeExpenseJsonIntoAnother(String existingJson, String newJson) {
+        String mergedJson;
+        try {
+            ExpenseRoot expenseRootExisting = null;
+            ObjectMapper objectMapper = new ObjectMapper();
+            if (!isNullOrEmpty(existingJson))
+                expenseRootExisting = objectMapper.readValue(existingJson, ExpenseRoot.class);
+            else return expenseJsonModifier(newJson);
+            ExpenseDomain expenseDomain = objectMapper.readValue(newJson, ExpenseDomain.class);
+            List<ExpenseDomain> expenseDomainList = expenseRootExisting.getExpenseDomains();
+            expenseDomainList.add(expenseDomain);
+            expenseRootExisting.setExpenseDomains(expenseDomainList);
+            mergedJson = objectMapper.writeValueAsString(expenseRootExisting);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

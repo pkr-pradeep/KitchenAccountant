@@ -1,5 +1,7 @@
 package com.example.kitchenaccountant.ui.income;
 
+import static com.example.kitchenaccountant.utilities.Constants.INCOME;
+
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -81,7 +83,7 @@ public class IncomeFragment extends Fragment {
 
             // Convert JSON object to string
             String formDataString = formDataJson.toString();
-            CloudFlareR2Operations.saveObjectIntoR2UsingCompletableFuture(formDataString);
+            CloudFlareR2Operations.saveObjectIntoR2UsingCompletableFuture(INCOME, formDataString);
             //Store JSON String in CloudFlare R2
             Toast.makeText(requireContext(), "Submission successful!", Toast.LENGTH_SHORT).show();
             // Reset input fields
